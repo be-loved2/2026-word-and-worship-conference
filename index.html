@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Worship & Word Conference 2026 — Flyer Generator</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ── HEADER ── -->
+  <header class="app-header">
+    <div class="header-badge">NEW WINE 2026</div>
+    <h1 class="header-title">Flyer Generator</h1>
+    <p class="header-sub">Worship &amp; Word Conference · June 17–19</p>
+  </header>
+
+  <!-- ── MAIN APP ── -->
+  <main class="app-main">
+
+    <!-- LEFT / TOP: Steps -->
+    <section class="steps-panel" aria-label="Generator steps">
+
+      <!-- STEP 1: Upload -->
+      <div class="step-card" id="step-upload">
+        <div class="step-label"><span class="step-num">01</span> Your Photo</div>
+
+        <div class="drop-zone" id="dropZone" role="button" tabindex="0" aria-label="Upload photo">
+          <div class="drop-icon">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="24" cy="24" r="23" stroke="currentColor" stroke-width="2"/>
+              <path d="M24 14v16M16 22l8-8 8 8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M14 34h20" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <p class="drop-primary">Drop your photo here</p>
+          <p class="drop-secondary">or tap to browse · JPG, PNG, WEBP</p>
+          <input type="file" id="photoInput" accept="image/*" hidden />
+        </div>
+
+        <!-- Preview -->
+        <div class="photo-preview-wrap hidden" id="previewWrap">
+          <img id="photoPreview" alt="Your photo preview" />
+          <button class="btn-change" id="btnChange" aria-label="Change photo">Change Photo</button>
+        </div>
+      </div>
+
+      <!-- STEP 2: Details -->
+      <div class="step-card" id="step-details">
+        <div class="step-label"><span class="step-num">02</span> Your Details</div>
+
+        <div class="field-group">
+          <label class="field-label" for="titleSelect">Title <span class="field-optional">(optional)</span></label>
+          <select id="titleSelect" class="field-input">
+            <option value="">— None —</option>
+            <option value="BRO.">BRO.</option>
+            <option value="SIS.">SIS.</option>
+            <option value="PASTOR">PASTOR</option>
+            <option value="EVANG.">EVANG.</option>
+            <option value="DR.">DR.</option>
+            <option value="PROF.">PROF.</option>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="nameInput">Full Name <span class="field-required">*</span></label>
+          <input
+            type="text"
+            id="nameInput"
+            class="field-input"
+            placeholder="e.g. Ayanfeoluwa Eniola"
+            maxlength="60"
+            autocomplete="name"
+          />
+          <p class="field-hint" id="namePreviewText"></p>
+        </div>
+      </div>
+
+      <!-- STEP 3: Generate -->
+      <div class="step-card step-card--action" id="step-generate">
+        <div class="step-label"><span class="step-num">03</span> Generate &amp; Download</div>
+
+        <button class="btn-generate" id="btnGenerate" disabled>
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="currentColor"/>
+          </svg>
+          Generate My Flyer
+        </button>
+
+        <div class="progress-wrap hidden" id="progressWrap">
+          <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+          <p class="progress-label" id="progressLabel">Preparing template…</p>
+        </div>
+
+        <button class="btn-download hidden" id="btnDownload">
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="none">
+            <path d="M12 15l-4-4h3V4h2v7h3l-4 4z" fill="currentColor"/>
+            <path d="M5 18h14v2H5z" fill="currentColor"/>
+          </svg>
+          Download PNG (High Quality)
+        </button>
+      </div>
+
+    </section>
+
+    <!-- RIGHT / BOTTOM: Canvas Preview -->
+    <section class="preview-panel" aria-label="Flyer preview">
+      <div class="preview-label">Live Preview</div>
+      <div class="canvas-wrap">
+        <canvas id="flyerCanvas" width="1080" height="1920"></canvas>
+        <div class="canvas-placeholder" id="canvasPlaceholder">
+          <div class="placeholder-icon">🎨</div>
+          <p>Your personalised flyer<br/>will appear here</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── HIDDEN: working canvas at full res ── -->
+  <canvas id="exportCanvas" width="1080" height="1920" style="display:none;"></canvas>
+
+  <script src="app.js"></script>
+</body>
+</html>
