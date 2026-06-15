@@ -44,15 +44,15 @@ let isGenerating = false;
 // These values were measured from the 1024×1536 source image and scaled up.
 // PHOTO CIRCLE — the gold ring frame
 const PHOTO = {
-  cx:     480,   // circle centre X
-  cy:     740,   // circle centre Y  (tuned visually)
-  radius: 345,   // inner radius of the ring (excluding ring border)
+  cx:     500,   // circle centre X
+  cy:     720,   // circle centre Y  (tuned visually)
+  radius: 315,   // inner radius of the ring (excluding ring border)
 };
 
 // NAME TEXT — baseline Y, horizontally centred
 const NAME = {
   x:       540,   // canvas horizontal centre
-  yBase:   1140,   // baseline Y of the name line
+  yBase:   1160,   // baseline Y of the name line
   maxWidth: 850,  // max allowed text width before shrinking
   fontSize: 60,   // default font size (px)
   minSize:  28,   // never go below this
@@ -257,18 +257,16 @@ function drawCirclePhoto(ctx, W, H, sx, sy) {
   const drawW = imgW * scale;
   const drawH = imgH * scale;
   const drawX = cx - drawW / 2;
-  const drawY = cy - drawH / 2 + 120;
+  const drawY = cy - drawH / 2 + 150;
 
   ctx.save();
 
   // Clip to circle
   ctx.beginPath();
-  ctx.ellipse(
+  ctx.arc(
     cx,
     cy, 
-    280, 
-    380, 
-    0,
+    315, 
     0,
     Math.PI * 2
   );
