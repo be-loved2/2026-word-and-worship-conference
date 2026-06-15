@@ -66,7 +66,7 @@ const templateImg = new Image();
 templateImg.src   = 'new-wine-template.png';
 
 templateImg.onerror = () => {
-  console.error('[FlyerGen] Could not load template image. Make sure assets/new-wine-template.png exists.');
+  console.error('[FlyerGen] Could not load template image. Make sure new-wine-template.png exists.');
 };
 
 // ── DRAG & DROP ───────────────────────────────────────────────────────────
@@ -245,24 +245,36 @@ function drawCirclePhoto(ctx, W, H, sx, sy) {
   const radius = PHOTO.radius * Math.min(sx, sy);
 
   // Calculate cover-fit dimensions (object-fit: cover)
-  const diameter = radius * 2;
+  const frameWidth = 520;
+  const frameHeight = 680;
   const imgW = userPhoto.naturalWidth;
   const imgH = userPhoto.naturalHeight;
 
-  const scale = Math.max(diameter / imgW, diameter / imgH);
+  const scale = Math.max(
+    frameWidth / imgW, 
+    frameHeigh / imgH
+  );
   const drawW = imgW * scale;
   const drawH = imgH * scale;
   const drawX = cx - drawW / 2;
-  const drawY = cy - drawH / 2 - 80;
+  const drawY = cy - drawH / 2 - 140;
 
   ctx.save();
 
   // Clip to circle
   ctx.beginPath();
-  ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+  ctx.ellipse(
+    cx,
+    cy, 
+    220, 
+    300, 
+    0,
+    0,
+    Math.PI * 2
+  );
   ctx.clip();
 
-  // Draw image centred and cover-fitted
+  `// Draw image centred and cover-fitted
   ctx.drawImage(userPhoto, drawX, drawY, drawW, drawH);
 
   ctx.restore();
